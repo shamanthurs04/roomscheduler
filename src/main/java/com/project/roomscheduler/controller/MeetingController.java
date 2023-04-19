@@ -2,7 +2,7 @@ package com.project.roomscheduler.controller;
 
 import com.project.roomscheduler.model.Meeting;
 import com.project.roomscheduler.service.MeetingService;
-import com.project.roomscheduler.service.SchedulerService;
+import com.project.roomscheduler.service.SchedulerManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +18,11 @@ public class MeetingController {
     MeetingService meetingService;
 
     @Autowired
-    SchedulerService schedulerService;
+    SchedulerManagementService schedulerService;
 
     @RequestMapping(value="/meetings", method= RequestMethod.POST)
     public Meeting createRoom(@RequestBody Meeting meeting) {
+        schedulerService.updateAddons(meeting.getAddons(),meeting.getUserId(),meeting.getRoomId());
         return meetingService.createMeeting(meeting);
     }
 

@@ -10,6 +10,7 @@ import java.util.List;
 
 @Repository
 public interface MeetingRepository extends JpaRepository<Meeting, Long> {
+
     @Query("SELECT m FROM meeting m WHERE m.date = :date")
     List<Meeting> findAllMeetingsForGivenDay(LocalDate date);
 }
