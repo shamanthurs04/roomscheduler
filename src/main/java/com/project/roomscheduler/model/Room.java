@@ -30,6 +30,9 @@ public abstract class Room {
     @Column(name="building")
     protected String building;
 
+    @Column(name="staff_only")
+    protected Boolean staffOnly;
+
     protected Room() {
     }
 
@@ -69,5 +72,13 @@ public abstract class Room {
 
     public void setBuilding(String building) {
         this.building = building;
+    }
+
+    public Boolean getStaffOnly() {
+        return staffOnly;
+    }
+
+    public void setStaffOnly(Boolean staffOnly) {
+        this.staffOnly = staffOnly;
     }
 }

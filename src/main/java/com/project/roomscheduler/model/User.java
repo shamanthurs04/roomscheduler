@@ -30,6 +30,9 @@ public abstract class User {
     @Column(name="password")
     private String password;
 
+    @Column(name="logged_in")
+    private Boolean loggedIn;
+
     protected User() {
     }
 
@@ -79,5 +82,13 @@ public abstract class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getLoggedIn() {
+        return loggedIn;
+    }
+
+    public void setLoggedIn(Boolean loggedIn) {
+        this.loggedIn = loggedIn;
     }
 }
