@@ -11,11 +11,11 @@ public class UserFactory {
             return null;
         }
         if (userType == UserType.ADMIN) {
-            return new Admin(user.getUserId(),user.getName(),user.getEmail(),user.getBalance(),user.getPassword());
+            return new Admin(user.getUserId(),user.getName(),user.getEmail(),user.getBalance(),user.getPassword(),user.getLoggedIn());
         } else if (userType == UserType.STAFF) {
-            return new Staff(user.getUserId(),user.getName(),user.getEmail(),user.getBalance(),user.getPassword());
+            return new Staff(user.getUserId(),user.getName(),user.getEmail(),user.getBalance(),user.getPassword(),user.getLoggedIn());
         } else if (userType == UserType.STUDENT) {
-            return new Student(user.getUserId(),user.getName(),user.getEmail(),user.getBalance(),user.getPassword());
+            return new Student(user.getUserId(),user.getName(),user.getEmail(),user.getBalance(),user.getPassword(),user.getLoggedIn());
         }
         return null;
     }

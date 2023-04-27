@@ -36,12 +36,13 @@ public abstract class User {
     protected User() {
     }
 
-    public User(Long userId, String name, String email, Integer balance, String password) {
+    public User(Long userId, String name, String email, Integer balance, String password, Boolean loggedIn) {
         this.userId = userId;
         this.name = name;
         this.email = email;
         this.balance = balance;
         this.password = password;
+        this.loggedIn = loggedIn;
     }
 
     public Long getUserId() {
