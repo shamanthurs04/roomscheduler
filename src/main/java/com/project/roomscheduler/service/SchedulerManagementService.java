@@ -30,10 +30,13 @@ public class SchedulerManagementService {
         LinkedList<Long> availableRoomIds = new LinkedList<>(allRooms.keySet());
         List<Meeting> meetingsForGiveDay =  meetingService.findAllMeetingsOfDay(date);
         for(Meeting meeting:meetingsForGiveDay){
-            LocalTime target = meeting.getStartTime();
-            Boolean isTargetAfterStartAndBeforeStop = ( target.isAfter( startTime ) && target.isBefore( endTime ) ) ;
+            LocalTime targetStart = meeting.getStartTime();
+            LocalTime targetEnd = meeting.getEndTime();
+            //Check for both end Time and start Time if its overlapping interval
+            Boolean isTargetAfterStartAndBeforeStop = targetEnd.isAfter(startTime) && targetStart.isBefore(endTime);
+            //Remove room ID of overlapping meetings
             if(isTargetAfterStartAndBeforeStop)
-                availableRoomIds.remove(meeting.getMeetingId());
+                availableRoomIds.remove(meeting.getRoomId());
         }
         return availableRoomIds;
     }

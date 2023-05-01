@@ -49,16 +49,18 @@ public class UserController {
 
     @PostMapping("/users/login")
     @CrossOrigin(origins = "http://localhost:3000")
-    public Status loginUser(@RequestBody LoginRequest loginRequest) {
+    public Long loginUser(@RequestBody LoginRequest loginRequest) {
         List<User> users = userService.getAllUsers();
         for (User other : users) {
             if (other.getEmail().equals(loginRequest.getEmail()) && other.getPassword().equals(loginRequest.getPassword())) {
                 other.setLoggedIn(true);
                 userService.updateUser(other.getUserId(),other);
-                return Status.SUCCESS;
+                //Return User ID of the user
+                return other.getUserId();
             }
         }
-        return Status.FAILURE;
+        //Return 0 indicating login failed
+        return 0L;
     }
     @PostMapping("/users/logout")
     @CrossOrigin(origins = "http://localhost:3000")
