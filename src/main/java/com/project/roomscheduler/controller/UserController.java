@@ -18,17 +18,20 @@ public class UserController {
     @Autowired
     UserFactory userFactory;
     @RequestMapping(value="/users/{userType}", method= RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3000")
     public User createUser(@RequestBody User user, @PathVariable String userType) {
         User userContext = userFactory.getUser(UserType.valueOf(userType.toUpperCase()),user);
         return userService.createUser(userContext);
     }
 
     @RequestMapping(value="/users/{id}", method= RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
     public User getUser(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/users/register")
+    @PostMapping(value = "/users/register")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Status registerUser(@RequestBody User newUser) {
         List<User> users = userService.getAllUsers();
         System.out.println("New user: " + newUser.toString());
@@ -39,11 +42,13 @@ public class UserController {
                 return Status.USER_ALREADY_EXISTS;
             }
         }
-        userService.createUser(newUser);
+        User createdUser = userService.createUser(newUser);
         return Status.SUCCESS;
     }
 
+
     @PostMapping("/users/login")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Status loginUser(@RequestBody LoginRequest loginRequest) {
         List<User> users = userService.getAllUsers();
         for (User other : users) {
@@ -56,6 +61,7 @@ public class UserController {
         return Status.FAILURE;
     }
     @PostMapping("/users/logout")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Status logUserOut(@RequestBody LogoutRequest logoutRequest) {
         List<User> users = userService.getAllUsers();
         for (User other : users) {

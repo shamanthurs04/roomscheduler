@@ -21,17 +21,20 @@ public class MeetingController {
     SchedulerManagementService schedulerService;
 
     @RequestMapping(value="/meetings", method= RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3000")
     public Meeting createRoom(@RequestBody Meeting meeting) {
         schedulerService.updateAddons(meeting.getAddons(),meeting.getUserId(),meeting.getRoomId());
         return meetingService.createMeeting(meeting);
     }
 
     @RequestMapping(value="/meetings/{date}", method= RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Meeting> getMeetingsForDay(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
         return meetingService.findAllMeetingsOfDay(date);
     }
 
     @RequestMapping(value="/meetings/{date}/{start}/{end}", method= RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
     public List<Long> getAvailableRooms(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date,
                                         @PathVariable @DateTimeFormat(pattern = "HH:mm") LocalTime start,
                                         @PathVariable @DateTimeFormat(pattern = "HH:mm") LocalTime end) {
