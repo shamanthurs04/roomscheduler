@@ -2,10 +2,7 @@ package com.project.roomscheduler.controller;
 
 import com.project.roomscheduler.enums.RoomType;
 import com.project.roomscheduler.factory.RoomFactory;
-import com.project.roomscheduler.model.LargeRoom;
-import com.project.roomscheduler.model.MediumRoom;
 import com.project.roomscheduler.model.Room;
-import com.project.roomscheduler.model.SmallRoom;
 import com.project.roomscheduler.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -41,7 +41,7 @@ public class SchedulerManagementService {
         return availableRoomIds;
     }
 
-    public void updateAddons(String addonList, long userId, long roomId){
+    public int updateAddons(String addonList, long userId, long roomId){
         Room room = roomService.getRoomById(roomId);
         User user = userService.getUserById(userId);
         String[] addons = addonList.split(",");
@@ -54,6 +54,7 @@ public class SchedulerManagementService {
         }
         user.setBalance(user.getBalance()-addonPrice);
         userService.updateUser(userId,user);
+        return addonPrice;
     }
 
     private RoomAddons getAddon(String addon, Room room) {

@@ -1,6 +1,8 @@
 package com.project.roomscheduler.controller;
 
+import com.project.roomscheduler.InitApplication;
 import com.project.roomscheduler.model.Meeting;
+import com.project.roomscheduler.observer.ObserverData;
 import com.project.roomscheduler.service.MeetingService;
 import com.project.roomscheduler.service.SchedulerManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +22,16 @@ public class MeetingController {
     @Autowired
     SchedulerManagementService schedulerService;
 
+    InitApplication init = InitApplication.getInstance();
+
     @RequestMapping(value="/meetings", method= RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:3000")
-    public Meeting createRoom(@RequestBody Meeting meeting) {
-        schedulerService.updateAddons(meeting.getAddons(),meeting.getUserId(),meeting.getRoomId());
-        return meetingService.createMeeting(meeting);
+    public Meeting createMeeting(@RequestBody Meeting meeting) {
+        int addonPrice = schedulerService.updateAddons(meeting.getAddons(),meeting.getUserId(),meeting.getRoomId());
+        Meeting response = meetingService.createMeeting(meeting);
+        ObserverData data = init.createObserverData(1, (long) addonPrice);
+        init.notifyObservers(data);
+        return response;
     }
 
     @RequestMapping(value="/meetings/{date}", method= RequestMethod.GET)
