@@ -9,8 +9,8 @@ public class LargeRoom extends Room{
     public LargeRoom() {
     }
 
-    public LargeRoom(Integer capacity, Integer floor, String building) {
-        super(capacity, floor, building);
+    public LargeRoom(Integer capacity, Integer floor, String building, Boolean staffOnly) {
+        super(capacity, floor, building, staffOnly);
     }
 
 }

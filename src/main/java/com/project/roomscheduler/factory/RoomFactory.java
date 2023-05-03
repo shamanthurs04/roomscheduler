@@ -20,11 +20,11 @@ public class RoomFactory {
             return null;
         }
         if (roomType == RoomType.SMALL) {
-            return new SmallRoom(room.getCapacity(),room.getFloor(),room.getBuilding());
+            return new SmallRoom(room.getCapacity(),room.getFloor(),room.getBuilding(),room.getStaffOnly());
         } else if (roomType == RoomType.MEDIUM) {
-            return new MediumRoom(room.getCapacity(),room.getFloor(),room.getBuilding());
+            return new MediumRoom(room.getCapacity(),room.getFloor(),room.getBuilding(),room.getStaffOnly());
         } else if (roomType == RoomType.LARGE) {
-            return new LargeRoom(room.getCapacity(),room.getFloor(),room.getBuilding());
+            return new LargeRoom(room.getCapacity(),room.getFloor(),room.getBuilding(),room.getStaffOnly());
         }
         return null;
     }
