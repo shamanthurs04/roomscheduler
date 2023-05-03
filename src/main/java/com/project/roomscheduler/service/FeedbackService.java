@@ -32,4 +32,12 @@ public class FeedbackService{
     public Feedback getFeedbackById(Long feedback_id){
         return (Feedback) Hibernate.unproxy(feedbackRepository.getById(feedback_id));
     }
+
+    /**
+     * Method to get all feedbacks
+     * @return
+     */
+    public List<Feedback> getAllFeedback() {
+        return (List<Feedback>) Hibernate.unproxy(feedbackRepository.getAllFeedback());
+    }
 }
