@@ -23,4 +23,8 @@ public class MeetingService {
     public List<Meeting> findAllMeetingsOfDay(LocalDate date){
         return meetingRepository.findAllMeetingsForGivenDay(date);
     }
+
+    public List<Meeting> findAllMeetingsForUser(Long id) {
+        return meetingRepository.findAllMeetingsForGivenUser(id);
+    }
 }

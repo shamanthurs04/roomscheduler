@@ -33,6 +33,12 @@ public class MeetingController {
         return meetingService.findAllMeetingsOfDay(date);
     }
 
+    @RequestMapping(value="/meeting/{id}", method= RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
+    public List<Meeting> getMeetingsForUser(@PathVariable Long id) {
+        return meetingService.findAllMeetingsForUser(id);
+    }
+
     @RequestMapping(value="/meetings/{date}/{start}/{end}", method= RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:3000")
     public List<Long> getAvailableRooms(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date,

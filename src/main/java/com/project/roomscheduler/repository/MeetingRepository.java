@@ -13,4 +13,7 @@ public interface MeetingRepository extends JpaRepository<Meeting, Long> {
 
     @Query("SELECT m FROM meeting m WHERE m.date = :date")
     List<Meeting> findAllMeetingsForGivenDay(LocalDate date);
+
+    @Query("SELECT m FROM meeting m WHERE m.userId = :id")
+    List<Meeting> findAllMeetingsForGivenUser(Long id);
 }
