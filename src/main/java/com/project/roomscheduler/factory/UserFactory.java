@@ -4,6 +4,11 @@ import com.project.roomscheduler.enums.UserType;
 import com.project.roomscheduler.model.*;
 import org.springframework.stereotype.Component;
 
+//COHESION:
+//UserFactory Class exhibits high cohesion
+//It performs and is associated with a single purpose, create and add users
+
+//Factory Pattern
 @Component
 public class UserFactory {
     public User getUser(UserType userType, User user) {

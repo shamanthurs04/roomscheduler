@@ -1,6 +1,6 @@
 package com.project.roomscheduler.observer;
 
-//ObserverData class to help create observer data for logging and tracking
+//ObserverData class to help create observer data for tracking
 public class ObserverData {
     public Integer roomsBooked;
     public Long schedulerEarning;

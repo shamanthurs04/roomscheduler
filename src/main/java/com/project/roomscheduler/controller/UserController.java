@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class for the CRUD api's of User.
+ */
 @RestController
 @RequestMapping("/api")
 public class UserController {

@@ -13,26 +13,42 @@ public class RoomService {
     @Autowired
     RoomRepository roomRepository;
 
-    // CREATE
+    // CREATE a new room
     public Room createRoom(Room room) {
         return roomRepository.save(room);
     }
 
+    /**
+     * Method to get room by id.
+     * @param roomId
+     * @return
+     */
     public Room getRoomById(Long roomId){
         return (Room)Hibernate.unproxy(roomRepository.getById(roomId));
     }
 
-    // READ
+    /**
+     * Method to get all rooms.
+     * @return
+     */
     public List<Room> getRooms() {
         return roomRepository.findAll();
     }
 
-    // DELETE
+    /**
+     * Method to delete a room
+     * @param roomId
+     */
     public void deleteRoom(Long roomId) {
         roomRepository.deleteById(roomId);
     }
 
-    // UPDATE
+    /**
+     * Method to update a room.
+     * @param roomId
+     * @param roomDetails
+     * @return
+     */
     public Room updateRoom(Long roomId, Room roomDetails) {
         Room room = roomRepository.findById(roomId).get();
         room.setCapacity(roomDetails.getCapacity());

@@ -25,6 +25,13 @@ public class SchedulerManagementService {
     @Autowired
     UserService userService;
 
+    /**
+     * Method to get the available rooms for given data and time.
+     * @param date
+     * @param startTime
+     * @param endTime
+     * @return
+     */
     public LinkedList<Long> getAvailableRooms(LocalDate date, LocalTime startTime, LocalTime endTime){
         HashMap<Long,Room> allRooms = (HashMap<Long, Room>) roomService.getRooms().stream().collect(Collectors.toMap(Room::getRoomId, Function.identity()));
         LinkedList<Long> availableRoomIds = new LinkedList<>(allRooms.keySet());
@@ -41,6 +48,13 @@ public class SchedulerManagementService {
         return availableRoomIds;
     }
 
+    /**
+     * Method to update the addons based on user selection.
+     * @param addonList
+     * @param userId
+     * @param roomId
+     * @return
+     */
     public int updateAddons(String addonList, long userId, long roomId){
         Room room = roomService.getRoomById(roomId);
         User user = userService.getUserById(userId);
@@ -57,6 +71,12 @@ public class SchedulerManagementService {
         return addonPrice;
     }
 
+    /**
+     * Method to get different type of addons.
+     * @param addon
+     * @param room
+     * @return
+     */
     private RoomAddons getAddon(String addon, Room room) {
         RoomAddons roomAddon = null;
         if (addon.equalsIgnoreCase("SNACKS")) {

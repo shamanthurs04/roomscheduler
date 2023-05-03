@@ -16,14 +16,29 @@ public class MeetingService {
     @Autowired
     MeetingRepository meetingRepository;
 
+    /**
+     * Method to create a meeting.
+     * @param meeting
+     * @return
+     */
     public Meeting createMeeting(Meeting meeting) {
         return meetingRepository.save(meeting);
     }
 
+    /**
+     * Method to find all meetings of given date
+     * @param date
+     * @return
+     */
     public List<Meeting> findAllMeetingsOfDay(LocalDate date){
         return meetingRepository.findAllMeetingsForGivenDay(date);
     }
 
+    /**
+     * Method to find all meetings booked by given user id.
+     * @param id
+     * @return
+     */
     public List<Meeting> findAllMeetingsForUser(Long id) {
         return meetingRepository.findAllMeetingsForGivenUser(id);
     }

@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+/**
+ * Controller class for the CRUD api's of meeting.
+ */
 @RestController
 @RequestMapping("/api")
 public class MeetingController {

@@ -7,6 +7,9 @@ import com.project.roomscheduler.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class for the CRUD api's of room.
+ */
 @RestController
 @RequestMapping("/api")
 public class RoomController {

@@ -4,6 +4,9 @@ import com.project.roomscheduler.InitApplication;
 import com.project.roomscheduler.observer.Tracker;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class for the tracker API.
+ */
 @RestController
 @RequestMapping("/api")
 public class TrackerController {

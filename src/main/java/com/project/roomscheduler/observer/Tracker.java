@@ -2,7 +2,7 @@ package com.project.roomscheduler.observer;
 
 //Observer Pattern
 //Implementation of Tracker(Observer pattern)
-//Keeps track of present day earning of Staff, fncd.FNCD and announces it each day
+//Keeps track of roomsBooked and earnings.
 
 //Singleton Pattern
 //Lazy Instantiation

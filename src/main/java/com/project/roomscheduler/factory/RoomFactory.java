@@ -7,6 +7,11 @@ import com.project.roomscheduler.model.Room;
 import com.project.roomscheduler.model.SmallRoom;
 import org.springframework.stereotype.Component;
 
+//COHESION:
+//RoomFactory Class exhibits high cohesion
+//It performs and is associated with a single purpose, create and add rooms
+
+//Factory Pattern
 @Component
 public class RoomFactory {
 

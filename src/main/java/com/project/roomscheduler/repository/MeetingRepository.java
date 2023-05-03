@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Repository class to handle all the CRUD Operations.
+ */
 @Repository
 public interface MeetingRepository extends JpaRepository<Meeting, Long> {
 
