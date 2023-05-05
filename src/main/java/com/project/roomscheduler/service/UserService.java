@@ -15,26 +15,46 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    // CREATE
+    /**
+     * Method to create a user
+     * @param user
+     * @return
+     */
     public User createUser(User user) {
         return userRepository.save(user);
     }
 
+    /**
+     * Method to get user by id.
+     * @param userId
+     * @return
+     */
     public User getUserById(Long userId){
         return (User) Hibernate.unproxy(userRepository.getById(userId));
     }
 
-    // READ
+    /**
+     * Method to get all the users.
+     * @return
+     */
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    // DELETE
+    /**
+     * Method to delete a user.
+     * @param roomId
+     */
     public void deleteUser(Long roomId) {
         userRepository.deleteById(roomId);
     }
 
-    // UPDATE
+    /**
+     * Method to update a user.
+     * @param userId
+     * @param userDetails
+     * @return
+     */
     public User updateUser(Long userId, User userDetails) {
         User user = userRepository.findById(userId).get();
         user.setName(userDetails.getName());

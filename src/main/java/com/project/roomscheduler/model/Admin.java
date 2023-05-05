@@ -9,8 +9,8 @@ public class Admin extends User{
     public Admin() {
     }
 
-    public Admin(Long userId, String name, String email, Integer balance, String password) {
-        super(userId, name, email, balance, password);
+    public Admin(Long userId, String name, String email, Integer balance, String password, Boolean loggedIn) {
+        super(userId, name, email, balance, password,loggedIn);
     }
 
 }

@@ -2,6 +2,8 @@ package com.project.roomscheduler.addons;
 
 import com.project.roomscheduler.model.Room;
 
+//Decorator Design Pattern
+//Abstract class RoomAddons act as a wrapper class to Room to provide add-on purchases
 public abstract class RoomAddons {
     private Room room;
 

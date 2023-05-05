@@ -36,10 +36,11 @@ public abstract class Room {
     protected Room() {
     }
 
-    public Room(Integer capacity, Integer floor, String building) {
+    public Room(Integer capacity, Integer floor, String building, Boolean staffOnly) {
         this.capacity = capacity;
         this.floor = floor;
         this.building = building;
+        this.staffOnly = staffOnly;
     }
 
     public Long getRoomId() {

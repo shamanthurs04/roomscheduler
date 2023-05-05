@@ -25,20 +25,37 @@ public class SchedulerManagementService {
     @Autowired
     UserService userService;
 
+    /**
+     * Method to get the available rooms for given data and time.
+     * @param date
+     * @param startTime
+     * @param endTime
+     * @return
+     */
     public LinkedList<Long> getAvailableRooms(LocalDate date, LocalTime startTime, LocalTime endTime){
         HashMap<Long,Room> allRooms = (HashMap<Long, Room>) roomService.getRooms().stream().collect(Collectors.toMap(Room::getRoomId, Function.identity()));
         LinkedList<Long> availableRoomIds = new LinkedList<>(allRooms.keySet());
         List<Meeting> meetingsForGiveDay =  meetingService.findAllMeetingsOfDay(date);
         for(Meeting meeting:meetingsForGiveDay){
-            LocalTime target = meeting.getStartTime();
-            Boolean isTargetAfterStartAndBeforeStop = ( target.isAfter( startTime ) && target.isBefore( endTime ) ) ;
+            LocalTime targetStart = meeting.getStartTime();
+            LocalTime targetEnd = meeting.getEndTime();
+            //Check for both end Time and start Time if its overlapping interval
+            Boolean isTargetAfterStartAndBeforeStop = targetEnd.isAfter(startTime) && targetStart.isBefore(endTime);
+            //Remove room ID of overlapping meetings
             if(isTargetAfterStartAndBeforeStop)
-                availableRoomIds.remove(meeting.getMeetingId());
+                availableRoomIds.remove(meeting.getRoomId());
         }
         return availableRoomIds;
     }
 
-    public void updateAddons(String addonList, long userId, long roomId){
+    /**
+     * Method to update the addons based on user selection.
+     * @param addonList
+     * @param userId
+     * @param roomId
+     * @return
+     */
+    public int updateAddons(String addonList, long userId, long roomId){
         Room room = roomService.getRoomById(roomId);
         User user = userService.getUserById(userId);
         String[] addons = addonList.split(",");
@@ -51,8 +68,15 @@ public class SchedulerManagementService {
         }
         user.setBalance(user.getBalance()-addonPrice);
         userService.updateUser(userId,user);
+        return addonPrice;
     }
 
+    /**
+     * Method to get different type of addons.
+     * @param addon
+     * @param room
+     * @return
+     */
     private RoomAddons getAddon(String addon, Room room) {
         RoomAddons roomAddon = null;
         if (addon.equalsIgnoreCase("SNACKS")) {

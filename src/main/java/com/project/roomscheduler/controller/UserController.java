@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controller class for the CRUD api's of User.
+ */
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -18,17 +21,20 @@ public class UserController {
     @Autowired
     UserFactory userFactory;
     @RequestMapping(value="/users/{userType}", method= RequestMethod.POST)
+    @CrossOrigin(origins = "http://localhost:3000")
     public User createUser(@RequestBody User user, @PathVariable String userType) {
         User userContext = userFactory.getUser(UserType.valueOf(userType.toUpperCase()),user);
         return userService.createUser(userContext);
     }
 
     @RequestMapping(value="/users/{id}", method= RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:3000")
     public User getUser(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
-    @PostMapping("/users/register")
+    @PostMapping(value = "/users/register")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Status registerUser(@RequestBody User newUser) {
         List<User> users = userService.getAllUsers();
         System.out.println("New user: " + newUser.toString());
@@ -39,23 +45,28 @@ public class UserController {
                 return Status.USER_ALREADY_EXISTS;
             }
         }
-        userService.createUser(newUser);
+        User createdUser = userService.createUser(newUser);
         return Status.SUCCESS;
     }
 
+
     @PostMapping("/users/login")
-    public Status loginUser(@RequestBody LoginRequest loginRequest) {
+    @CrossOrigin(origins = "http://localhost:3000")
+    public Long loginUser(@RequestBody LoginRequest loginRequest) {
         List<User> users = userService.getAllUsers();
         for (User other : users) {
             if (other.getEmail().equals(loginRequest.getEmail()) && other.getPassword().equals(loginRequest.getPassword())) {
                 other.setLoggedIn(true);
                 userService.updateUser(other.getUserId(),other);
-                return Status.SUCCESS;
+                //Return User ID of the user
+                return other.getUserId();
             }
         }
-        return Status.FAILURE;
+        //Return 0 indicating login failed
+        return 0L;
     }
     @PostMapping("/users/logout")
+    @CrossOrigin(origins = "http://localhost:3000")
     public Status logUserOut(@RequestBody LogoutRequest logoutRequest) {
         List<User> users = userService.getAllUsers();
         for (User other : users) {
