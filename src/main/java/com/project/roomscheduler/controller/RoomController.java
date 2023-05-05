@@ -17,6 +17,13 @@ public class RoomController {
     RoomService roomService;
     @Autowired
     RoomFactory roomFactory;
+
+    /**
+     * Post API - To add/create a new room.
+     * @param room
+     * @param roomType
+     * @return
+     */
     @RequestMapping(value="/rooms/{roomType}", method= RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:3000")
     public Room createRoom(@RequestBody Room room,@PathVariable String roomType) {
@@ -24,6 +31,11 @@ public class RoomController {
         return roomService.createRoom(roomContext);
     }
 
+    /**
+     * Get API - To get a room details by id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/room/{id}", method= RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:3000")
     public Room getRoom(@PathVariable Long id) {

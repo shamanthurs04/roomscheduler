@@ -27,6 +27,11 @@ public class MeetingController {
 
     InitApplication init = InitApplication.getInstance();
 
+    /**
+     * Post API - to create a meeting
+     * @param meeting
+     * @return
+     */
     @RequestMapping(value="/meetings", method= RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:3000")
     public Meeting createMeeting(@RequestBody Meeting meeting) {
@@ -37,18 +42,35 @@ public class MeetingController {
         return response;
     }
 
+    /**
+     * Get API - To get all the meetings for a give date.
+     * @param date
+     * @return
+     */
     @RequestMapping(value="/meetings/{date}", method= RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:3000")
     public List<Meeting> getMeetingsForDay(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date) {
         return meetingService.findAllMeetingsOfDay(date);
     }
 
+    /**
+     * Get API - To get a meeting by id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/meeting/{id}", method= RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:3000")
     public List<Meeting> getMeetingsForUser(@PathVariable Long id) {
         return meetingService.findAllMeetingsForUser(id);
     }
 
+    /**
+     * Get API - To get all the available rooms for the given date and time.
+     * @param date
+     * @param start
+     * @param end
+     * @return
+     */
     @RequestMapping(value="/meetings/{date}/{start}/{end}", method= RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:3000")
     public List<Long> getAvailableRooms(@PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date,

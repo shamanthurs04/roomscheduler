@@ -20,6 +20,13 @@ public class UserController {
     UserService userService;
     @Autowired
     UserFactory userFactory;
+
+    /**
+     * Post API - to add/create a new user.
+     * @param user
+     * @param userType
+     * @return
+     */
     @RequestMapping(value="/users/{userType}", method= RequestMethod.POST)
     @CrossOrigin(origins = "http://localhost:3000")
     public User createUser(@RequestBody User user, @PathVariable String userType) {
@@ -27,12 +34,22 @@ public class UserController {
         return userService.createUser(userContext);
     }
 
+    /**
+     * Get API - To get a user details by id.
+     * @param id
+     * @return
+     */
     @RequestMapping(value="/users/{id}", method= RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:3000")
     public User getUser(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 
+    /**
+     * To register a user
+     * @param newUser
+     * @return
+     */
     @PostMapping(value = "/users/register")
     @CrossOrigin(origins = "http://localhost:3000")
     public Status registerUser(@RequestBody User newUser) {
@@ -49,7 +66,11 @@ public class UserController {
         return Status.SUCCESS;
     }
 
-
+    /**
+     * To login a user into the system.
+     * @param loginRequest
+     * @return
+     */
     @PostMapping("/users/login")
     @CrossOrigin(origins = "http://localhost:3000")
     public Long loginUser(@RequestBody LoginRequest loginRequest) {
@@ -65,6 +86,12 @@ public class UserController {
         //Return 0 indicating login failed
         return 0L;
     }
+
+    /**
+     * To logout the user of the system.
+     * @param logoutRequest
+     * @return
+     */
     @PostMapping("/users/logout")
     @CrossOrigin(origins = "http://localhost:3000")
     public Status logUserOut(@RequestBody LogoutRequest logoutRequest) {

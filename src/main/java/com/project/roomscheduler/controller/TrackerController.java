@@ -13,6 +13,10 @@ public class TrackerController {
 
     InitApplication init = InitApplication.getInstance();
 
+    /**
+     * Get api - to get the tracker details like number of rooms booked and money earned by addons.
+     * @return
+     */
     @RequestMapping(value="/tracker", method= RequestMethod.GET)
     @CrossOrigin(origins = "http://localhost:3000")
     public String getTrackerInfo() {
