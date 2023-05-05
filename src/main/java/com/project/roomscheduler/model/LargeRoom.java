@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("LARGE")
+// Inheritance
 public class LargeRoom extends Room{
     public LargeRoom() {
     }

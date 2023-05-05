@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("ADMIN")
+// Inheritance
 public class Admin extends User{
     public Admin() {
     }

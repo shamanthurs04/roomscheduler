@@ -7,13 +7,17 @@ public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="feedback_id")
+    // Encapsulation
     private Long feedback_id;
     @Column(name="feedback")
+    // Encapsulation
     private String feedback;
     @Column(name="rating")
+    // Encapsulation
     private Integer rating;
 
     @Column(name="meeting_id")
+    // Encapsulation
     private Long meeting_id;
 
     public Long getFeedback_id() {

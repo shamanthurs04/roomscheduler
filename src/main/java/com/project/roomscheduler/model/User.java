@@ -16,6 +16,7 @@ import javax.persistence.*;
         @JsonSubTypes.Type(value = Student.class, name = "STUDENT")
 })
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+// Abstraction
 public abstract class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

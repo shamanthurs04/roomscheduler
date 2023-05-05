@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("STUDENT")
+// Inheritance
 public class Student extends User{
     public Student() {
     }

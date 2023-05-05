@@ -23,6 +23,7 @@ public class InitApplication implements Subject {
      *
      * @param o
      */
+    // Polymorphism
     @Override
     public void registerObserver(Observer o) {
         observerList.add(o);
@@ -33,6 +34,7 @@ public class InitApplication implements Subject {
      *
      * @param o
      */
+    // Polymorphism
     @Override
     public void unregisterObserver(Observer o) {
         observerList.remove(o);
@@ -43,6 +45,7 @@ public class InitApplication implements Subject {
      *
      * @param data
      */
+    // Polymorphism
     @Override
     public void notifyObservers(ObserverData data) {
         observerList.forEach(observer -> {

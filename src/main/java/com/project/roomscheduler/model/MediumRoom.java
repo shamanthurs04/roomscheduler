@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("MEDIUM")
+// Inheritance
 public class MediumRoom extends Room{
     public MediumRoom() {
     }

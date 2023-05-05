@@ -6,6 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @DiscriminatorValue("SMALL")
+// Inheritance
 public class SmallRoom extends Room{
     public SmallRoom() {
     }

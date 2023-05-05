@@ -16,6 +16,7 @@ import javax.persistence.*;
         @JsonSubTypes.Type(value = MediumRoom.class, name = "MEDIUM")
 })
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+// Abstraction
 public abstract class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
